@@ -170,7 +170,7 @@ CONF_PARAMS -  allows to provide -set options to swerv.conf script to alter pred
 ## RUNNING C TEST ON ReV-SoC
 If you wish to run any C test on SoC then you just need to write a test just like a test provided in testbench/tests/Ctest.c
 Now place it in same directory testbench/tests/Ctest.c 
-Now you need to run the command given below just change the cmark to the filename of your test from TEST=Ctest
+Now you need to run the command given below just change the Ctest to the filename of your test from TEST=Ctest
      
     make -f $RV_ROOT/tools/Makefile irun TEST=Ctest
 
@@ -209,7 +209,27 @@ The `$RV_ROOT/testbench/hex` directory contains precompiled hex files of the tes
 
 **Note**: The testbench has a simple synthesizable bridge that allows you to load the ICCM via load/store instructions. This is only supported for AXI4 builds.
 
+## RUNNING C TEST ON ReV-SoC and compare with ISS (whisper)
+If you wish to run any C test on SoC then you just need to write a test just like a test provided in testbench/tests/Ctest.c
+Now place it in same directory testbench/tests/Ctest.c 
+Now you need to run the command given below just change the Ctest to the filename of your test from TEST=Ctest
+     
+    make -f $RV_ROOT/tools/Makefile cmp debug=1 TEST=Ctest
 
+will build simulate and compare results from whisper and will print the test comparision status using Cadence xrun and comparision.py placed in build-Linux
 
+## GENERATING HEX TO LOAD ON ReV-SoC FPGA
+First load the bin file to the FPGA and then run the C test following the previous section in simulation once simulation is executed you can run this command in root directory:
+
+    python3 script.py
+
+firmware.hex is generated in same directory which can be loaded into ReV-SoC FPGA serially for more details on loading hex check ReV-FPGA repo. 
 ----
+SoC By
 Micro Electronics Reseach Lab
+
+Contributers:
+1. Engr. Rehan Ejaz (Team leader)
+2. Engr. Uzair Qureshi
+3. Engr. Wisha Naseer
+4. Engr. Kinza Qamar
